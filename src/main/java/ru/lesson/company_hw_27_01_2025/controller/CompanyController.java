@@ -18,7 +18,7 @@ public class CompanyController {
 
     private final CompanyService companyService;
 
-    @PostMapping("/add")
+    @PostMapping
     public CompanyDTO postMapping(@RequestBody @Valid CompanyDTO companyDTO, @RequestParam(value = "employees", required = false) List<EmployeeDTO> employeeDTOS) {
 
         return companyService.save(companyDTO, employeeDTOS);
