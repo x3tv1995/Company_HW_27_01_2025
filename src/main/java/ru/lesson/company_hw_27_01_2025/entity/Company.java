@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -19,8 +20,6 @@ public class Company {
 
     private String name;
 
-    @ElementCollection
-    @CollectionTable(name = "employees", joinColumns = @JoinColumn(name = "id_company"))
-    @Column(name = "name")
-    private List<Employee> employeeList;
+    @OneToMany(mappedBy = "company",cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    private List<Employee> employeeList = new ArrayList<>();
 }

@@ -11,7 +11,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class EmployeeDTO {
-     @Valid
+    private Long id;
+
     @NotBlank(message = "Name is not null")
     @Size(min = 2, max = 15, message = "Length 2-15")
     private String name;

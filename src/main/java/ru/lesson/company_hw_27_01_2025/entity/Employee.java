@@ -5,12 +5,24 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
-@Embeddable
+@Entity
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Employee {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
     private String name;
     private String position;
+
+    @ManyToOne( fetch = FetchType.LAZY)
+    @JoinColumn(name = "company_id")
+
+   private Company company;
 
 }
