@@ -13,13 +13,15 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "companies")
 public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
+    private Long id;
+    @NotBlank
+    @Size(min = 2, max = 50)
     private String name;
 
-    @OneToMany(mappedBy = "company",cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
     private List<Employee> employeeList = new ArrayList<>();
 }

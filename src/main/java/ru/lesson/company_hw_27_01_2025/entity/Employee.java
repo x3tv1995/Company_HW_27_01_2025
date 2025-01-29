@@ -12,17 +12,22 @@ import lombok.ToString;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "employees")
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
+    @NotBlank
+    @Size(min = 2, max = 50)
     private String name;
+
+    @NotBlank
+    @Size(min = 2, max = 50)
     private String position;
 
-    @ManyToOne( fetch = FetchType.LAZY)
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY)
     @JoinColumn(name = "company_id")
-
-   private Company company;
+    private Company company;
 
 }
